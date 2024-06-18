@@ -21,7 +21,7 @@ This project is designed to create a local web application that displays real-ti
 ### Prerequisites
 - Raspberry Pi for sensor data collection
 - Separate computer for hosting the web application
-- Sixteen LV Digital Inputs 8-Layer Stackable HAT for Raspberry Pi: This HAT is used to connect the sensors to the Raspberry Pi. It uses the lib16inpind library to interface with the sensor channels. More information can be found here.
+- Sixteen LV Digital Inputs 8-Layer Stackable HAT for Raspberry Pi: This HAT is used to connect the sensors to the Raspberry Pi. It uses the lib16inpind library to interface with the sensor channels. More information can be found here. https://sequentmicrosystems.com/products/16-universal-inputs-card-for-raspberry-pi.
 - SQLite3 installed on the hosting computer
 
 ### Configuration
