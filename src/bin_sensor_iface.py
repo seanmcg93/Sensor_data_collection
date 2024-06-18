@@ -59,20 +59,14 @@ class Sensor:
 
             if self.delay > 0:
                 time.sleep(self.delay)  # Delay to avoid double counting
-
-
-
-
-
-        if self.delay > 0:
-            time.sleep(self.delay)  # Delay to avoid double counting
+        
 
     def get_sensor_state(self):
         return lib16inpind.readCh(self.stack, self.channel_number) == 1
 
 
 
-Sensor("Bins",0,2,delay=10)
+#Sensor("Bins",0,2,delay=10)
 #con = sqlite3.connect("production.db")
 #cur= con.cursor()
 #print(cur.execute("""SELECT * FROM bin_dump_count""").fetchall())
