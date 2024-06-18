@@ -28,7 +28,7 @@ This project is designed to create a local web application that displays real-ti
 1. **Clone the repository:**
     ```bash
     git clone https://github.com/seanmcg93/sensor_data_collection.git
-    cd sensor-data-dashboard
+    cd sensor_data_collection
     ```
 
 2. **Configure the database connection:**
