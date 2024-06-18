@@ -21,12 +21,13 @@ This project is designed to create a local web application that displays real-ti
 ### Prerequisites
 - Raspberry Pi for sensor data collection
 - Separate computer for hosting the web application
+- Sixteen LV Digital Inputs 8-Layer Stackable HAT for Raspberry Pi ** This is used to connect the sensors to it uses the libary "lib16inpind" https://sequentmicrosystems.com/products/16-universal-inputs-card-for-raspberry-pi
 - SQLite3 installed on the hosting computer
 
 ### Configuration
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/sensor-data-dashboard.git
+    git clone https://github.com/seanmcg93/sensor_data_collection.git
     cd sensor-data-dashboard
     ```
 
