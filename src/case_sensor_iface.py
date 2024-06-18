@@ -43,23 +43,18 @@ class Sensor:
             else:
                 # If the row does not exist, insert a new row with count = 1
                 cur.execute("INSERT INTO case_count (date, count) VALUES (?, 1)", (date,))
-
-            print (cur.execute("""SELECT * FROM case_count WHERE date = ?""", (date,)).fetchone())
             
             con.commit()
+            print (cur.execute("""SELECT * FROM case_count WHERE date = ?""", (date,)).fetchone())
             con.close()
-
-
-
-
-        if self.delay > 0:
-            time.sleep(self.delay)  # Delay to avoid double counting
+            
+        
 
     def get_sensor_state(self):
         return lib16inpind.readCh(self.stack, self.channel_number) == 1
         
         
 #Sensor('case',0,1)
-con= sqlite3.connect('production.db')
-cur= con.cursor()
-print(cur.execute("""SELECT * FROM case_count""").fetchall())
+#con= sqlite3.connect('production.db')
+#cur= con.cursor()
+#print(cur.execute("""SELECT * FROM case_count""").fetchall())
