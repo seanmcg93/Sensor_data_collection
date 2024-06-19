@@ -1,5 +1,5 @@
 import lib16inpind
-import sqlite3
+import psycopg2
 import time
 import threading
 from datetime import datetime
@@ -27,25 +27,34 @@ class Sensor:
     def sensor_action(self):
         with self.lock:
             date = datetime.now().strftime("%Y-%m-%d")
-            con = sqlite3.connect("production.db")
+            con = psycopg2.connect(
+                dbname="database_name",
+                user="database user_name",
+                password="database password",
+                host="database ip",
+                port="database port_number"
+            )
+
             cur = con.cursor()
+
             cur.execute("""CREATE TABLE IF NOT EXISTS case_count(
                 date TEXT PRIMARY KEY,
                 count INTEGER)""")
 
             # Checks if current date exists.
-            cur.execute("""SELECT count FROM case_count WHERE date = ?""",(date,))
+            cur.execute("""SELECT count FROM case_count WHERE date = %s""",(date,))
             row = cur.fetchone()
 
             if row:
                 # If the row exists, update the count
-                cur.execute("UPDATE case_count SET count = count + 1 WHERE date = ?", (date,))
+                cur.execute("UPDATE case_count SET count = count + 1 WHERE date = %s", (date,))
             else:
                 # If the row does not exist, insert a new row with count = 1
-                cur.execute("INSERT INTO case_count (date, count) VALUES (?, 1)", (date,))
+                cur.execute("INSERT INTO case_count (date, count) VALUES (%s, 1)", (date,))
             
             con.commit()
-            print (cur.execute("""SELECT * FROM case_count WHERE date = ?""", (date,)).fetchone())
+            cur.execute("SELECT * FROM case_count WHERE data = %s",(date,))
+            print(cur.fetchone())
             con.close()
             
         

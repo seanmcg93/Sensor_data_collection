@@ -1,5 +1,5 @@
 import lib16inpind
-import sqlite3
+import psycopg2
 import time
 import threading
 from datetime import datetime
@@ -28,16 +28,24 @@ class Sensor:
         with self.lock:
             date = datetime.now().strftime("%Y-%m-%d")
             current_time = datetime.now().strftime("%H:%M:S")
-            con = sqlite3.connect("production.db")
+
+            con = psycopg2.connect(
+                dbname="database_name",
+                user="database user_name",
+                password="database password",
+                host="database ip",
+                port="database port_number"
+            )
             cur = con.cursor()
+
             cur.execute("""CREATE TABLE IF NOT EXISTS bin_dump_count(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id SERIAL PRIMARY KEY,
                 date TEXT,
                 time TEXT,
                 count INTEGER)""")
 
             # Check if there is already an entry for the current date
-            cur.execute("SELECT count FROM bin_dump_count WHERE date = ? ORDER BY id DESC LIMIT 1", (date,))
+            cur.execute("SELECT count FROM bin_dump_count WHERE date = %s ORDER BY id DESC LIMIT 1", (date,))
             row = cur.fetchone()
 
             if row:
@@ -49,7 +57,7 @@ class Sensor:
 
             # Insert a new row with incremented count
             new_count = last_count + 1
-            cur.execute("INSERT INTO bin_dump_count (date, time, count) VALUES (?, ?, ?)",
+            cur.execute("INSERT INTO bin_dump_count (date, time, count) VALUES (%s, %s, %s)",
                     (date, current_time, new_count))
 
             con.commit()
@@ -59,7 +67,7 @@ class Sensor:
 
             if self.delay > 0:
                 time.sleep(self.delay)  # Delay to avoid double counting
-        
+
 
     def get_sensor_state(self):
         return lib16inpind.readCh(self.stack, self.channel_number) == 1
