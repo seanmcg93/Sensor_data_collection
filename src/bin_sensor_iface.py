@@ -76,7 +76,3 @@ class Sensor:
 
 
 #Sensor("Bins",0,2,delay=10)
-#con = sqlite3.connect("production.db")
-#cur= con.cursor()
-#print(cur.execute("""SELECT * FROM bin_dump_count""").fetchall())
-#con.close()
