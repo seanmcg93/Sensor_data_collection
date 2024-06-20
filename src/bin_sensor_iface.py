@@ -3,6 +3,7 @@ import psycopg2
 import time
 import threading
 from datetime import datetime
+import db_conf
 
 class Sensor:
     def __init__(self, field_name, stack, channel_number, delay=0):
@@ -30,11 +31,11 @@ class Sensor:
             current_time = datetime.now().strftime("%H:%M:S")
 
             con = psycopg2.connect(
-                dbname="database_name",
-                user="database user_name",
-                password="database password",
-                host="database ip",
-                port="database port_number"
+                dbname=db_conf.db_name,
+                user=db_conf.db_user,
+                password=db_conf.db_pass,
+                host=db_conf.db_host,
+                port=db_conf.db_port
             )
             cur = con.cursor()
 
