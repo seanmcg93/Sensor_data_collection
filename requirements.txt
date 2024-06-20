@@ -1,0 +1,11 @@
+# cd (working directory)
+# python3 -m venv venv
+# source venv/bin/activate
+# pip install -r requirements.txt
+# cd src
+# python combined_sensors.py
+
+
+SM16inpind ==1.0.1
+python-dotenv ==1.0.1
+psycopg2-binary ==2.9.9

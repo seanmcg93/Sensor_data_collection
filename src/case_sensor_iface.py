@@ -53,7 +53,7 @@ class Sensor:
                 cur.execute("INSERT INTO case_count (date, count) VALUES (%s, 1)", (date,))
             
             con.commit()
-            cur.execute("SELECT * FROM case_count WHERE data = %s",(date,))
+            cur.execute("SELECT * FROM case_count WHERE date = %s",(date,))
             print(cur.fetchone())
             con.close()
             
