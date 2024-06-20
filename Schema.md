@@ -101,8 +101,8 @@ def insert_bin_dump_count():
     cur.execute("""
         CREATE TABLE IF NOT EXISTS bin_dump_count (
             id SERIAL PRIMARY KEY,
-            date TEXT NOT NULL,
-            time TEXT NOT NULL,
+            date DATE NOT NULL,
+            time TIME NOT NULL,
             count INTEGER NOT NULL
         )
     """)
@@ -144,7 +144,7 @@ def insert_case_count():
     
     cur.execute("""
         CREATE TABLE IF NOT EXISTS case_count (
-            date TEXT PRIMARY KEY,
+            date DATE PRIMARY KEY,
             count INTEGER NOT NULL
         )
     """)

@@ -38,7 +38,7 @@ class Sensor:
             cur = con.cursor()
 
             cur.execute("""CREATE TABLE IF NOT EXISTS case_count(
-                date TEXT PRIMARY KEY,
+                date DATE PRIMARY KEY,
                 count INTEGER)""")
 
             # Checks if current date exists.

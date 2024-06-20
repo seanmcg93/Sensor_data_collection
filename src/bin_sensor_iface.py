@@ -41,8 +41,8 @@ class Sensor:
 
             cur.execute("""CREATE TABLE IF NOT EXISTS bin_dump_count(
                 id SERIAL PRIMARY KEY,
-                date TEXT,
-                time TEXT,
+                date DATE,
+                time TIME,
                 count INTEGER)""")
 
             # Check if there is already an entry for the current date
