@@ -64,6 +64,4 @@ class Sensor:
         
         
 #Sensor('case',0,1)
-#con= sqlite3.connect('production.db')
-#cur= con.cursor()
-#print(cur.execute("""SELECT * FROM case_count""").fetchall())
+
