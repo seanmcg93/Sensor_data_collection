@@ -10,12 +10,13 @@ This project collects and visualizes real-time data from various sensors connect
 - **Scalability:** Easily add new sensors and corresponding tables in the database for real-time tracking.
 
 ## Technical Specifications
+
 ### Frontend
-- **Technologies:** HTML, CSS, JavaScript (React.js or similar framework) for the web app interface.
 - **Data Visualization:** **Metabase** for easy dashboard creation and real-time sensor data visualization.
 - **Real-Time Updates:** WebSockets or alternative technology for live data streaming.
 
 ### Backend
+- **Technologies:** Python is used to run the sensor code and write to the database.
 - **Database:** PostgreSQL to store sensor data.
 - **Data Hosting:** Sensor data is hosted locally on the Raspberry Pi, while Metabase is set up to visualize this data on the web app.
 - **Metabase Setup:** Metabase is connected to PostgreSQL to generate interactive reports and dashboards.
@@ -64,7 +65,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 For questions or suggestions, please contact Sean McGovern at seanmcgovern93@proton.me.
-
----
-
-This README includes Metabase integration while keeping the original project details intact. Let me know if you'd like further adjustments!
