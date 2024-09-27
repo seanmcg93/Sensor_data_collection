@@ -1,28 +1,33 @@
 # Sensor Data Dashboard
 
 ## Overview
-This project is designed to create a local web application that displays real-time data from various sensors connected to a Raspberry Pi. The sensors log their data into a PostgreSQL database, and the web application provides a dashboard to visualize this data. Additionally, users can perform basic queries to retrieve historical data from the database.
+This project collects and visualizes real-time data from various sensors connected to a Raspberry Pi. The sensor data is stored in a PostgreSQL database, and **Metabase** is used to display the data on a web-based dashboard. Users can view real-time insights, perform queries, and access historical data via this interactive interface.
 
 ## Features
-- **Real-Time Data Display:** Pulls and displays real-time data from the PostgreSQL database, with each sensor logging data to a different table.
-- **Query Functionality:** Allows users to perform basic queries to retrieve historical data.
-- **Scalability:** Easily accommodates the addition of new sensors and corresponding tables in the database.
+- **Real-Time Data Display:** Real-time sensor data is logged into the PostgreSQL database and displayed through Metabase.
+- **Metabase Dashboards:** Easy-to-use dashboards provide data visualization and querying.
+- **Query Functionality:** Users can perform custom queries directly through the Metabase interface.
+- **Scalability:** Easily add new sensors and corresponding tables in the database for real-time tracking.
 
 ## Technical Specifications
+
 ### Frontend
-- **Technologies:** HTML, CSS, JavaScript (React.js or another modern framework)
-- **Real-Time Updates:** Utilizes WebSockets or another appropriate technology for real-time updates.
+- **Data Visualization:** **Metabase** for easy dashboard creation and real-time sensor data visualization.
+- **Real-Time Updates:** WebSockets or alternative technology for live data streaming.
 
 ### Backend
-- **Database:** PostgreSQL
-- **Hosting:** The web application is hosted on a separate computer (not the Raspberry Pi) and is accessible only on the local network.
+- **Technologies:** Python is used to run the sensor code and write to the database.
+- **Database:** PostgreSQL to store sensor data.
+- **Data Hosting:** Sensor data is hosted locally on the Raspberry Pi, while Metabase is set up to visualize this data on the web app.
+- **Metabase Setup:** Metabase is connected to PostgreSQL to generate interactive reports and dashboards.
 
 ## Setup Instructions
 ### Prerequisites
-- Raspberry Pi for sensor data collection
-- Separate computer for hosting the web application
-- Sixteen LV Digital Inputs 8-Layer Stackable HAT for Raspberry Pi: This HAT is used to connect the sensors to the Raspberry Pi. It uses the lib16inpind library to interface with the sensor channels. More information can be found here. https://sequentmicrosystems.com/products/16-universal-inputs-card-for-raspberry-pi.
-- SQLite3 installed on the hosting computer
+- Raspberry Pi for collecting sensor data.
+- Separate computer for hosting the Metabase instance and the web application.
+- [Sixteen LV Digital Inputs 8-Layer Stackable HAT](https://sequentmicrosystems.com/products/16-universal-inputs-card-for-raspberry-pi): Used to connect the sensors to the Raspberry Pi, interfacing through the `lib16inpind` library.
+- PostgreSQL installed on the Raspberry Pi for data storage.
+- **Metabase** installed to visualize the data.
 
 ### Configuration
 1. **Clone the repository:**
@@ -32,24 +37,31 @@ This project is designed to create a local web application that displays real-ti
     ```
 
 2. **Configure the database connection:**
-    Update the database configuration in the project to point to your PostgreSQL database.
+    Update the PostgreSQL configuration to ensure your sensor data is being logged correctly.
 
+3. **Install and Configure Metabase:**
+   - Install Metabase on the server where the web app is hosted.
+   - Connect Metabase to the PostgreSQL database by setting up a new database connection inside the Metabase admin panel.
+
+4. **Run the web application:**
+    Follow the instructions to start your local development server.
 
 ## Usage
-- The dashboard will automatically display real-time data for each sensor.
-- Use the query interface to retrieve specific historical data from the database.
+- The dashboard will automatically display real-time data from the sensors.
+- **Metabase:** Access the Metabase interface at `http://<your_metabase_url>` to visualize data or run custom queries.
+- Use the query interface in Metabase for historical data retrieval.
 
 ## Project Structure
-- `src/`: Contains the source code for the web application.
-- `public/`: Contains public assets and the main HTML file.
-- `database/`: Contains the PostgreSQL database file (if included) and migration scripts.
+- `src/`: Web app source code.
+- `public/`: Public assets
+- `database/`: PostgreSQL configuration and migration scripts.
 - `README.md`: Project overview and setup instructions.
 
 ## Contribution
-Feel free to fork this repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
+Feel free to fork this repository and submit pull requests. For major changes, please open an issue first to discuss your proposed changes.
 
 ## License
-This project is licensed under the MIT Lisense - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
-For any questions or suggestions, please contact Sean McGovern at seanmcgovern93@proton.me .
+For questions or suggestions, please contact Sean McGovern at seanmcgovern93@proton.me.
