@@ -20,7 +20,8 @@ class Sensor:
     def monitor_event_detect(self):
         while True:
             current_sensor_state = self.get_sensor_state()
-            if not self.prev_sensor_state and current_sensor_state:
+            pack_running = lib16inpind.readCh(0,3)
+            if not self.prev_sensor_state and current_sensor_state and pack_running == 0:
                 self.sensor_action()  # Call sensor_action if sensor state changes from False to True
             self.prev_sensor_state = current_sensor_state
 
@@ -28,7 +29,7 @@ class Sensor:
     def sensor_action(self):
         with self.lock:
             date = datetime.now().strftime("%Y-%m-%d")
-            current_time = datetime.now().strftime("%H:%M:S")
+            current_time = datetime.now().strftime("%H:%M:%S")
 
             con = psycopg2.connect(
                 dbname=db_conf.db_name,
@@ -43,7 +44,9 @@ class Sensor:
                 id SERIAL PRIMARY KEY,
                 date DATE,
                 time TIME,
-                count INTEGER)""")
+                count INTEGER,
+                Time_Difference INTERVAL
+                )""")
 
             # Check if there is already an entry for the current date
             cur.execute("SELECT count FROM bin_dump_count WHERE date = %s ORDER BY id DESC LIMIT 1", (date,))
